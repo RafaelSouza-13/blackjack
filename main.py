@@ -34,10 +34,10 @@ while(True):
       print('Jogador não encontrado')
   elif(op == '3'):
     bl.exibir_jogadores()
-  elif(op == '4'):
+  elif(op == '0'):
     if(len(bl) < 2):
       print('Para iniciar o jogo é nescessario no mínimo 2 jogadores')
-      continue
+      break
     else:
       print('Iniciando o jogo...')
       break
@@ -48,16 +48,22 @@ while(not bl.encerrar_jogo()):
   for jogador in bl:
     while(True):
       op2 = '0'
+      print('------------------------------')
       print(f'O jogador {jogador.apelido} esta jogando')
       print('Para pedir uma cartas digite - 1')
       print('Para passar a vez digite - 2')
       print('Para visualizar as suas cartas e pontos - 3')
+      print('------------------------------')
+      print('\n')
       op = input('Opção: ')
       if(op == '1'):
-        print(jogador.solicitar_carta())
+        print(f'Valor da carta retirada: {jogador.solicitar_carta()}')
         while(True):
+          print('------------------------------')
           print('Para visualizar as suas cartas e pontos - 1')
           print('Finalizar a vez - 2')
+          print('------------------------------')
+          print('\n')
           op2 = input('Opção: ')
           if(op2 == '1'):
             jogador.exibe_cartas_pontos()
@@ -75,5 +81,4 @@ while(not bl.encerrar_jogo()):
       if(op2 == '2'):
         op2 = 0
         break
-
-print('fim.....')
+bl.exibe_resultado()

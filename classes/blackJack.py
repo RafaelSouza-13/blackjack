@@ -16,6 +16,35 @@ class BlackJack:
       if(jogador.encerrar == False):
         return False
     return True
+  
+  def _resultado(self):
+    maior = 0
+    lista = []
+    for jogador in self._lista_jogadores:
+      if(jogador.pontos > maior and jogador.pontos <= 21):
+        maior = jogador.pontos
+        lista.clear()
+        lista.append(jogador)
+      elif(jogador.pontos == maior):
+        lista.append(jogador)
+    return lista
+
+  def exibe_resultado(self):
+    lista = self._resultado()
+    print('Resultado da partida')
+    if(len(lista) == 0):
+      print('Não houve ganhador')
+      print('Todos os jogadores ultrapassaram 21 pontos')
+      for jogador in self._lista_jogadores:
+        print(f'Jogador {jogador}: {jogador.pontos} - 21 pontos')
+    elif(len(lista) == 1):
+      print(f'O jogador {lista[0]} ganhou com {lista[0].pontos} - 21 pontos')
+    else:
+      print('Empate entre os jogadores: ')
+      for jogador in lista:
+        print(f'Jogador {jogador}: {jogador.pontos} - 21 pontos')
+    print('fim do jogo...')
+      
 
   def exibir_jogadores(self):
     for index, jogadores in enumerate(self._lista_jogadores):
@@ -29,12 +58,13 @@ class BlackJack:
 
   @classmethod
   def menu_inicial(cls):
-    print('------------------------------')
+    print('\n')
     print('No minimo 2 jogadores e no maximo 4')
+    print('------------------------------')
     print('Para adicionar um jogador digite - 1')
     print('Para remover um jogador digite - 2')
     print('Para visualizar os jogadores cadastrados digite - 3')
-    print('Para jogar digite - 4')
+    print('Para jogar digite - 0')
     print('------------------------------')
     print('\n')
   
