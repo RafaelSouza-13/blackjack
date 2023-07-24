@@ -1,7 +1,7 @@
 class Pessoa:
   def __init__(self, nome, idade):
-    self._nome = self.valida_nome(nome)
-    self._idade = self.valida_idade(idade)
+    self._nome = self._valida_nome(nome)
+    self._idade = self._valida_idade(idade)
   
   @property
   def idade(self):
@@ -11,14 +11,14 @@ class Pessoa:
   def nome(self):
     return self._nome
   
-  def valida_nome(self, nome):
+  def _valida_nome(self, nome):
+    nome = nome.lower().strip()
     if(nome == '' or nome == None or len(nome) < 3):
       raise NameError('Não é permitida a entrada de nomes vazios ou menores que tres caracteres')
     else:
-      nome = nome.lower().strip()
       return nome.title()
   
-  def valida_idade(self, idade):
+  def _valida_idade(self, idade):
     try:
       idade = int(idade)
     except ValueError:

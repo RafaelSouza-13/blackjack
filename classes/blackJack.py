@@ -11,6 +11,12 @@ class BlackJack:
         return self._lista_jogadores.pop()
     return False
 
+  def encerrar_jogo(self):
+    for jogador in self._lista_jogadores:
+      if(jogador.encerrar == False):
+        return False
+    return True
+
   def exibir_jogadores(self):
     for index, jogadores in enumerate(self._lista_jogadores):
       print(f'Jogador {index + 1}: {jogadores}')
