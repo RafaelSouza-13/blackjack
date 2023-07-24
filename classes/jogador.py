@@ -1,6 +1,4 @@
-import random
 from classes.pessoa import Pessoa
-
 
 class Jogador(Pessoa):
   def __init__(self, nome, idade, apelido):
