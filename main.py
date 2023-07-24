@@ -1,7 +1,9 @@
 from classes.blackJack import BlackJack
 from classes.jogador import Jogador
+from classes.baralho import Baralho
 
 bl = BlackJack()
+baralho = Baralho()
 while(True):
   BlackJack.menu_inicial()
   op = input('Opção: ')
@@ -57,7 +59,7 @@ while(not bl.encerrar_jogo()):
       print('\n')
       op = input('Opção: ')
       if(op == '1'):
-        print(f'Valor da carta retirada: {jogador.solicitar_carta()}')
+        jogador.solicitar_carta(baralho.seleciona_carta())
         while(True):
           print('------------------------------')
           print('Para visualizar as suas cartas e pontos - 1')
