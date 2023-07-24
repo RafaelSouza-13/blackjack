@@ -1,43 +1,44 @@
-from classes.black_jack import BlackJack
+from classes.blackJack import BlackJack
 from classes.jogador import Jogador
-# from classes.black_jack import BlackJack
 
 bl = BlackJack()
-lista_jogadores = []
-op = 0
-while(op != 2):
-  print('Para adicionar um jogador digite - 1')
-  print('Para remover um jogador digite - 2')
-  print('Para continuar digite - 3')
+while(True):
+  BlackJack.menu_inicial()
   op = input('Opção: ')
   if(op == '1'):
-    nome =  input("Digite seu nome: ")
-    idade = input("Digite sua idade: ")
-    apelido = input("Digite seu apelido: ")
-    try:
-      jogador = Jogador(nome, idade, apelido)
-    except NameError as e:
-      print(f'Não foi possível adicionar um jogador: {e}')
-    except ValueError as e:
-      print(f'Não foi possível adicionar um jogador: {e}')
+    if(len(bl) < 4):
+      nome =  input("Digite seu nome: ")
+      idade = input("Digite sua idade: ")
+      apelido = input("Digite seu apelido: ")
+      try:
+        jogador = Jogador(nome, idade, apelido)
+      except NameError as e:
+        print(f'Não foi possível adicionar um jogador: {e}')
+      except ValueError as e:
+        print(f'Não foi possível adicionar um jogador: {e}')
+      else:
+        print(f'Jogador {jogador.apelido} adicionado')
+        bl.adicionar_jogador(jogador)
     else:
-      print('Jogador adicionado')
-      lista_jogadores.append(jogador)
+      print('O jogo só permite no máximo 4 jogadores')
   elif(op == '2'):
-    if(len(lista_jogadores) == 0):
+    if(len(bl) == 0):
       print('A lista de jogadores está vazia')
       continue
-    for j in lista_jogadores:
-      print(j)
-    remover = input('Digite o apelido do jogador que deseja remover: ')
-    for j in lista_jogadores:
-      print(j)
+    bl.exibir_jogadores()
+    apelido = input('Digite o apelido do jogador que deseja remover: ')
+    jogador_removido = bl.remover_jogador(apelido)
+    if(jogador_removido):
+      print(f'O jogador {jogador_removido} foi removido')
+    else:
+      print('Jogador não encontrado')
   elif(op == '3'):
-    if(len(lista_jogadores) < 2):
+    bl.exibir_jogadores()
+  elif(op == '4'):
+    if(len(bl) < 2):
       print('Para iniciar o jogo é nescessario no mínimo 2 jogadores')
       continue
     else:
       break
-    
-for j in lista_jogadores:
-  print(j)
+  else:
+    print('Opção inválida')

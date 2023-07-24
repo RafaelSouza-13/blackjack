@@ -15,17 +15,16 @@ class Pessoa:
     if(nome == '' or nome == None or len(nome) < 3):
       raise NameError('Não é permitida a entrada de nomes vazios ou menores que tres caracteres')
     else:
+      nome = nome.lower().strip()
       return nome.title()
   
   def valida_idade(self, idade):
     try:
       idade = int(idade)
-    except ValueError():
-      print('Para a idade somente a entrada de números é aceita!')
+    except ValueError:
+      raise ValueError('Para a idade somente a entrada de números é aceita!')
     else:
       if(idade < 18):
         raise ValueError('Não é permitido o registro de menores de idade')
       else:
         return idade
-    
-    

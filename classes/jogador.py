@@ -15,7 +15,8 @@ class Jogador(Pessoa):
     if(apelido == "" or apelido == None):
       raise NameError('Não é aceito entrada em branco em apelido')
     else:
+      apelido = apelido.lower().strip()
       return apelido.title()
     
   def __str__(self) -> str:
-    return f'Jogador: {self.apelido}'
+    return f'{self.apelido}'
