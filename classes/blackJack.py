@@ -38,11 +38,17 @@ class BlackJack:
       for jogador in self._lista_jogadores:
         print(f'Jogador {jogador}: {jogador.pontos} - 21 pontos')
     elif(len(lista) == 1):
-      print(f'O jogador {lista[0]} ganhou com {lista[0].pontos} - 21 pontos')
+      if(lista[0].pontos == 21):
+        print(f'O jogador {lista[0]} ganhou com blackjack')
+      else:
+        print(f'O jogador {lista[0]} ganhou com {lista[0].pontos} - 21 pontos')
     else:
       print('Empate entre os jogadores: ')
       for jogador in lista:
-        print(f'Jogador {jogador}: {jogador.pontos} - 21 pontos')
+        if(jogador.pontos == 21):
+          print(f'Jogador {jogador}: Blackjack')
+        else:
+          print(f'Jogador {jogador}: {jogador.pontos} - 21 pontos')
     print('fim do jogo...')
       
 
